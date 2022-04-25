@@ -1,13 +1,13 @@
-import * as React from 'react';
-import CheckboxIcon from './CheckboxIcon';
-import SubmenuIcon from './SubmenuIcon';
-import Submenu from './Submenu';
-import { IREWMenu } from '../@types';
+import * as React from "react";
+import CheckboxIcon from "./CheckboxIcon";
+import SubmenuIcon from "./SubmenuIcon";
+import Submenu from "./Submenu";
+import { IREWMenu } from "../@types";
 
 const platform =
-  typeof window !== 'undefined' ? window.navigator.platform : process.platform;
-const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K', 'darwin'];
-const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE', 'win32'];
+  typeof window !== "undefined" ? window.navigator.platform : process.platform;
+const macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K", "darwin"];
+const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE", "win32"];
 
 const is = {
   macos: macosPlatforms.indexOf(platform) !== -1,
@@ -19,32 +19,32 @@ const is = {
 
 export function KeymapDisplay(key?: string) {
   if (!key) {
-    return '';
+    return "";
   }
 
-  const chars = {
-    Command: '⌘',
-    Cmd: '⌘',
-    Control: 'Ctrl',
-    Ctrl: 'Ctrl',
-    CommandOrControl: is.macos ? '⌘' : 'Ctrl',
-    CmdOrCtrl: is.macos ? '⌘' : 'Ctrl',
-    Alt: is.macos ? '⌥' : 'Alt',
-    Option: '⌥',
-    Shift: is.macos ? '⇧' : 'Shift',
-    Return: is.macos ? '↵' : 'Enter',
+  const chars: Record<string, string> = {
+    Command: "⌘",
+    Cmd: "⌘",
+    Control: "Ctrl",
+    Ctrl: "Ctrl",
+    CommandOrControl: is.macos ? "⌘" : "Ctrl",
+    CmdOrCtrl: is.macos ? "⌘" : "Ctrl",
+    Alt: is.macos ? "⌥" : "Alt",
+    Option: "⌥",
+    Shift: is.macos ? "⇧" : "Shift",
+    Return: is.macos ? "↵" : "Enter",
   };
 
   return key
     .split(/\+/g)
-    .map(s => {
-      if (typeof chars[s] === 'undefined') {
+    .map((s) => {
+      if (typeof chars[s] === "undefined") {
         return s;
       } else {
         return chars[s];
       }
     })
-    .join(' + ');
+    .join(" + ");
 }
 
 class MenuItem extends React.Component<IREWMenu.IMenuItemProps> {
@@ -57,34 +57,34 @@ class MenuItem extends React.Component<IREWMenu.IMenuItemProps> {
 
   render() {
     const { item, onClickItem, onHoverItem } = this.props;
-    const { type = 'normal', icon, enabled = true, visible = true } = item;
-    const itemProps = {};
+    const { type = "normal", icon, enabled = true, visible = true } = item;
+    const itemProps: Record<string, any> = {};
 
     if (!visible) {
       return null;
     }
 
     switch (type) {
-      case 'normal':
-      case 'checkbox':
-        itemProps['data-ctx-item'] = true;
-        itemProps['data-enabled'] = enabled;
+      case "normal":
+      case "checkbox":
+        itemProps["data-ctx-item"] = true;
+        itemProps["data-enabled"] = enabled;
 
         if (item.opened) {
-          itemProps['data-opened'] = true;
+          itemProps["data-opened"] = true;
         }
 
         return (
           <div
             ref={this.itemRef}
             {...itemProps}
-            onClick={e => {
+            onClick={(e) => {
               // has click and dont have submenu
               if (!item.submenu && enabled) {
                 onClickItem(item, window, e);
               }
             }}
-            onMouseOver={e => {
+            onMouseOver={(e) => {
               onHoverItem(item, e, true);
             }}
           >
@@ -111,8 +111,8 @@ class MenuItem extends React.Component<IREWMenu.IMenuItemProps> {
             )}
           </div>
         );
-      case 'separator':
-        itemProps['data-ctx-separator'] = true;
+      case "separator":
+        itemProps["data-ctx-separator"] = true;
         return <div {...itemProps} />;
 
       default:

@@ -1,4 +1,4 @@
-import { ContextMenu } from 'react-electron-window-menu';
+import ContextMenu from "./ContextMenu";
 
 export namespace IREWMenu {
   export type OnHoverItem = (

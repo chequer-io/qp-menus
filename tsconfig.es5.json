@@ -12,6 +12,6 @@
     "jsxImportSource": ""
   },
   "include": [
-    "./datagrid/**/*"
+    "./qp-menus/**/*"
   ]
 }

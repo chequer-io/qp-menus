@@ -16,21 +16,23 @@
     "next-build": "next build",
     "next-start": "next start",
     "next-lint": "next lint",
-    "build:common": "lessc datagrid/style.less dist/style.css && rimraf ./dist/scss && ncp datagrid/style.less ./dist/style.less && ncp datagrid/less ./dist/less",
+    "build:common": "lessc qp-menus/style.less dist/style.css && rimraf ./dist/less && ncp qp-menus/style.less ./dist/style.less && ncp qp-menus/less ./dist/less",
     "build:es5": "rimraf ./dist/commonjs && tsc --p tsconfig.es5.json",
     "build:es6": "rimraf ./dist/es6 && tsc --p tsconfig.es6.json",
     "build": "npm run build:common && npm run build:es5 && npm run build:es6",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",
+    "@types/react-dom": "^18.0.2",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "less": "^4.1.2",
