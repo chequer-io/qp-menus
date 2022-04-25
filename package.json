@@ -1,0 +1,58 @@
+{
+  "name": "qp-menus",
+  "version": "0.0.1",
+  "description": "Menubar and contextMenu for React",
+  "jsnext:main": "dist/es6/index.js",
+  "module": "dist/es6/index.js",
+  "main": "dist/commonjs/index.js",
+  "repository": "https://github.com/chequer-io/qp-menus",
+  "author": "tom@axisj.com",
+  "license": "MIT",
+  "keywords": [
+    "react-component, typescript"
+  ],
+  "scripts": {
+    "dev": "PORT=3378 next dev",
+    "next-build": "next build",
+    "next-start": "next start",
+    "next-lint": "next lint",
+    "build:common": "lessc datagrid/style.less dist/style.css && rimraf ./dist/scss && ncp datagrid/style.less ./dist/style.less && ncp datagrid/less ./dist/less",
+    "build:es5": "rimraf ./dist/commonjs && tsc --p tsconfig.es5.json",
+    "build:es6": "rimraf ./dist/es6 && tsc --p tsconfig.es6.json",
+    "build": "npm run build:common && npm run build:es5 && npm run build:es6",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@types/node": "17.0.23",
+    "@types/react": "17.0.43",
+    "eslint": "8.11.0",
+    "eslint-config-next": "12.1.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "ncp": "^2.0.0",
+    "next": "^12.0.7",
+    "next-with-less": "^2.0.5",
+    "prettier": "^2.6.1",
+    "raw-loader": "^4.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "4.6.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
